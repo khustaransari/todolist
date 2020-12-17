@@ -1,0 +1,28 @@
+<%- include("header") -%>
+  <!-- <%  if(kindOfDay=="Monday"){%>
+        <h1 style="color: blue;">It is <%= kindOfDay %>To-do-list</h1>
+<%  } else {%>
+        <h1 style="color: brown;">It is <%= kindOfDay %></h1>
+        <% }%> -->
+        <div class="box" id="heading">
+            <h1 style="text-transform: capitalize;"><%=kindOfDay%></h1>
+        </div>
+   <div class="box">
+   <!-- onChange is used for submiting the form when checkbox is clicked and give post request to another page -->
+          
+        <% newItems.forEach(function(newItems){ %>
+            <form action="/delete"method="post">
+            <div class="item"name="head"value="<%= kindOfDay %>">
+                <input type="checkbox"name="checkbox"value="<%= newItems._id %>"onChange="this.form.submit()">   
+            <p> <%= newItems.name %> </p>
+        </div>
+        <input type="hidden"name="listItem"value="<%=kindOfDay%>">
+    </form>
+        <% }) %>
+    
+       <form action="/" method="post"class="item">
+        <input type="text"placeholder="Enter an Element"name="newItem"autocomplete="off">
+        <button type="submit" name="lists" value="<%= kindOfDay %>">+</button>
+       </form>
+ 
+<%- include("footer") -%>
